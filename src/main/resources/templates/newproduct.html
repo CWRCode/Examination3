@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="http://localhost:8080/allitems">Back</a>
+
+</br>
+
+<h3>New product</h3>
+<form th:action="@{/newitem}" method="post" th:object="${item}">
+    <p th:text="${producterror}"></p>
+    Name:<br/>  <input type="text" th:field="*{name}" /> </br>
+    Price:<br/>  <input type="text" th:field="*{price}" /> <br/>
+    Category:<br/>  <input type="text" th:field="*{category}" /> <br/>
+    <input type="submit" value="Anmäl"/>
+</form>
+
+</body>
+</html>

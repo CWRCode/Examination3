@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/login" method="post">
+    <p th:text="${loginerror}"></p>
+    <input type="text" size="8" name="userName" value="null">
+    <input type="text" size="8" name="userPassword" value="null">
+    <input type="submit" value="Login"/>
+</form>
+
+</br></br>
+
+<a href="http://localhost:8080/new">register new membership</a>
+
+</body>
+</html>

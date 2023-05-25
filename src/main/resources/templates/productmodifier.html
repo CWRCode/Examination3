@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://localhost:8080/allitems">Back</a>
+</br>
+
+<h3>Name</h3>
+<p th:text="${item.name}"></p>
+<h3>Price</h3>
+<p th:text="${item.price}"></p>
+<h3>Category</h3>
+<p th:text="${item.category}"></p>
+
+</br>
+<p> Make changes </p>
+</br>
+
+<form action="/changeitemname" method="get">
+    <input type="hidden" size="8" name="id" th:value="${item.id}">
+    <input type="submit" size="8" value="Update name">
+</form>
+</br>
+<form action="/changeitemprice" method="get">
+    <input type="hidden" size="8" name="id" th:value="${item.id}">
+    <input type="submit" size="8" value="Update price">
+</form>
+</br>
+<form action="/changeitemcategory" method="get">
+    <input type="hidden" size="8" name="id" th:value="${item.id}">
+    <input type="submit" size="8" value="Update category">
+</form>
+</br>
+<form action="/deleteitem" method="get">
+    <input type="hidden" name="id" th:value="${item.id}">
+    <input type="submit" value="Delete">
+</form>
+</br>
+
+</body>
+</html>

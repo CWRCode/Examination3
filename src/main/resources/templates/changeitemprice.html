@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>Price</h4>
+<p th:text="${item.price}"></p>
+</br>
+<form action="/changeitemprice" method="post">
+    <input type="hidden" size="8" name="id" th:value="${item.id}">
+    <input type="text" size="8" name="newprice" value="new price">
+    <input type="submit" value="Change"/>
+</form>
+
+</body>
+</html>

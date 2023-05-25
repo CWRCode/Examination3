@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h4>Product</h4>
+<p th:text="${item.name}"></p>
+<h4>Price</h4>
+<p th:text="${item.price}"></p>
+<h5> Add amount </h5>
+<form action="/addcart" method="post">
+  <input type="hidden" size="8" name="id" th:value="${item.id}">
+  <input type="text" name="amount" value="0">
+  <input type="submit" value="Add"/>
+</form>
+
+</body>
+</html>

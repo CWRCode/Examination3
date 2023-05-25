@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3> Product management</h3>
+
+<a href="http://localhost:8080/newitem">Add new item</a>
+</br></br>
+
+<h4>Items</h4>
+
+<div th:each="it : ${allitems}">
+    Name: <span th:text="${it.name}"></span> </br>
+    Price: <span th:text="${it.price}"></span> </br>
+    Category: <span th:text="${it.category}"></span>
+    <form action="/updateitem" method="get">
+        <input type="hidden" name="id" th:value="${it.id}">
+        <input type="submit" value="Select">
+    </form>
+    </br>
+</div>
+
+</body>
+</html>

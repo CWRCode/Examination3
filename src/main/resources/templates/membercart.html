@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</br>
+<a href="http://localhost:8080/store">Continue Shopping!</a>
+</br></br></br>
+
+<div style="text-align: center;">
+    <h1>MY CART</h1> </br>
+    Total cost: <th:block th:text="${totalsum}"></th:block>
+</div>
+
+
+<table style="margin-right: auto;margin-left: auto">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <th>Change</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="items : ${cart}">
+        <tr>
+            <td th:text="${items.item.name}"></td>
+            <td th:text="${items.item.price} + Sek"></td>
+            <td th:text="${items.amount} + pcs"></td>
+            <td>
+                <form action="/changecartamount" method="post">
+                    <input type="hidden" name="updatecartitem" th:value="${items.item.name}">
+                    <input type="text" size="8" name="amount" value="new amount">
+                    <input type="submit" value="Select">
+                </form>
+            </td>
+        </tr>
+
+    </th:block>
+    </tbody>
+
+</table>
+
+</body>
+</html>
