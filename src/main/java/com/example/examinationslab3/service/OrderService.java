@@ -28,6 +28,7 @@ public class OrderService {
         this.itemService = itemService;
         this.memberService = memberService;
         this.cart = new ArrayList<>();
+        System.out.println(cart.size() + "....ny");
     }
 
     public void createOrder(Member member, List<Item> list){
@@ -43,7 +44,10 @@ public class OrderService {
 
         if (!status) {
             cart.add(cartItem);
+            System.out.println("Tillagd");
         }
+
+
     }
 
     public boolean updateAmountIfExist(Item item, int amount){
@@ -65,7 +69,7 @@ public class OrderService {
         int sum = 0;
 
         for (CartItem c : cart) {
-            sum = sum + c.getAmount();
+            sum = sum + c.getAmount() * (int)c.getItem().getPrice();
         }
 
         return String.valueOf(sum + " " + "sek");
@@ -89,7 +93,6 @@ public class OrderService {
     }
 
     public void changeCartAmount(String name, int amount){
-
         Item item = new Item();
         item.setName(name);
 

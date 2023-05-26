@@ -4,7 +4,9 @@ import com.example.examinationslab3.dao.ItemDAO;
 import com.example.examinationslab3.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,6 +53,36 @@ public class ItemService {
 
         return itemDAO.findByName(name);
     }
+
+    public List<String> findItemByCategories(){
+
+        List<Item> items = itemDAO.findAll();
+        List<String> categories = new ArrayList<>();
+
+        for (Item item : items) {
+            if(!categories.contains(item.getCategory())){
+                categories.add(item.getCategory());
+            }
+        }
+
+        return categories;
+    }
+
+    public List<Item> findItemByCategories(String category){
+
+        List<Item> items = itemDAO.findByCategory(category);
+
+        /*List<String> categories = new ArrayList<>();
+
+        for (Item item : items) {
+            if(!categories.contains(item.getCategory())){
+                categories.add(item.getCategory());
+            }
+        }*/
+
+        return items;
+    }
+
 
     public void deleteItem(Long id){
         if(itemDAO.existsById(id)){

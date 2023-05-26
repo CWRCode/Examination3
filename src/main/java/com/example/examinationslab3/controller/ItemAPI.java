@@ -173,6 +173,28 @@ public class ItemAPI {
         return "frontpagestore";
     }
 
+    @GetMapping("/store/categories")
+    public String seeCategories(Model m){
+
+        List<String> categories = itemService.findItemByCategories();
+        m.addAttribute("allcategories", categories);
+
+
+        return "allcategories";
+    }
+
+    @GetMapping("/store/categories/items")
+    public String seeCategoriesItems(Model m, @RequestParam String category){
+
+        List<Item> categories = itemService.findItemByCategories(category);
+
+        m.addAttribute("allstoreitems", categories);
+
+
+        return "frontpagestore";
+    }
+
+
 
 
 }

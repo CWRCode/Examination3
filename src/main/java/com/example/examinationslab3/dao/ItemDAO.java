@@ -11,5 +11,6 @@ import java.util.List;
 public interface ItemDAO extends JpaRepository<Item, Long> {
 
     List<Item> findByName(String itemName);
+    List<Item> findByCategory(String itemName);
 
 }

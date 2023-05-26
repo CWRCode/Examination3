@@ -46,7 +46,7 @@ public class OrderAPI {
     }
 
     @PostMapping("/changecartamount")
-    public String changecartamount(@RequestParam String updatecartitem, @RequestParam int amount, Model m){
+    public String changeCartAmount(@RequestParam String updatecartitem, @RequestParam int amount, Model m){
 
         try {
             orderService.changeCartAmount(updatecartitem, amount);

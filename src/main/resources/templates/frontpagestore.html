@@ -28,11 +28,12 @@
                 <input type="submit" value="Search">
                 </form>
             </td>
-
-            <td text="abba"></td>
-
+            <td>
+                <form action="/store/categories" method="get">
+                    <input type="submit" value="See all">
+                </form>
+            </td>
         </tr>
-
     </th:block>
     </tbody>
 
@@ -48,6 +49,7 @@
     </tr>
     </thead>
     <tbody>
+    </br>
     <th:block th:each="it : ${allstoreitems}">
         <tr>
             <td th:text="${it.name}"></td>
