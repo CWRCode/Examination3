@@ -2,6 +2,7 @@ package com.example.examinationslab3.controller;
 
 import com.example.examinationslab3.model.Member;
 import com.example.examinationslab3.service.MemberService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class MemberAPI {
         Boolean check = memberService.verifyMember(userName, userPassword);
 
         if(check) {
-            return "adminlogin";
+            return "/frontpagestore";
         }
 
         return "redirect:/login";
@@ -52,14 +53,18 @@ public class MemberAPI {
     }
 
     @PostMapping("/new")
-    String addNewMember(@Valid Member member, BindingResult br, Model m ) {
+    String addNewMember(@Valid Member member, BindingResult br, Model m, HttpServletResponse response ) {
         m.addAttribute("member", new Member());
 
         if(br.hasErrors()){
             m.addAttribute("errormessage", "not correctly done");
             return "newmember";
         } else {
-            memberService.addMember(member);
+            if(memberService.verifyMember(member.getUsername(), member.getPassword())){
+                m.addAttribute("errormessage", "not correctly done");
+            }else {
+                memberService.addMember(member);
+            }
         }
         return "login";
     }

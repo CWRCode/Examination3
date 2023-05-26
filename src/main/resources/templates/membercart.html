@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,7 +12,6 @@
 
 <div style="text-align: center;">
     <h1>MY CART</h1> </br>
-    Total cost: <th:block th:text="${totalsum}"></th:block>
 </div>
 
 
@@ -39,11 +38,27 @@
                 </form>
             </td>
         </tr>
-
     </th:block>
     </tbody>
-
 </table>
+
+<div style="text-align: center;">
+    </br>
+    Total cost: <th:block th:text="${totalsum}"></th:block>
+    </br>
+
+    <p>
+        If you want to continue with the purchase,
+        press the button below. We will start working on it!
+    </p>
+
+
+    <form action="/store/cart/purchase" method="post">
+        <input type="submit" value="View">
+    </form>
+
+
+</div>
 
 </body>
 </html>

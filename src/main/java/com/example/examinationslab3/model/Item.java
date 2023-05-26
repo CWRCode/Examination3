@@ -23,7 +23,7 @@ public class Item {
     private String name;
 
     @Min(1)
-    @Max(2000)
+    @Max(10000)
     private double price;
 
     @NotBlank

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div style="text-align: center;">
+    <h1>RECEIPT</h1> </br>
+    <h5>Your purchase have been confirmed!</h5>
+    <h5>See your receipt below</h5> </br>
+</div>
+
+<table style="margin-right: auto;margin-left: auto">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Unit price</th>
+        <th>Price</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="items : ${cart}">
+
+        <tr>
+            <td th:text="${items.item.name}"></td>
+            <td th:text="${items.amount}"></td>
+            <td th:text="${items.item.price}"></td>
+            <td th:text="${items.item.price * items.amount}"></td>
+
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+<div style="text-align: center;width: auto">
+    </br>
+    Total cost: <th:block th:text="${totalcart} + Sek"></th:block>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 package com.example.examinationslab3.controller;
 
 import com.example.examinationslab3.model.CartItem;
-import com.example.examinationslab3.model.Item;
 import com.example.examinationslab3.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +54,21 @@ public class OrderAPI {
             return "redirect:/store";
         }
 
+    }
+
+    @PostMapping("/store/cart/purchase")
+    public String changeCartAmount(Model m){
+
+
+        m.addAttribute("cart", orderService.cartItems());
+        m.addAttribute("totalcart", orderService.totalCartCostInt());
+
+        //orderService.createOrder(a, orderService.cartItems());
+
+        orderService.clearCart();
+
+
+        return "purchase";
     }
 
 

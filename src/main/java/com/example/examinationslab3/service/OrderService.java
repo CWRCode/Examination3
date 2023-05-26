@@ -1,10 +1,13 @@
 package com.example.examinationslab3.service;
 
+import com.example.examinationslab3.controller.OrderAPI;
 import com.example.examinationslab3.dao.OrderDAO;
 import com.example.examinationslab3.model.CartItem;
 import com.example.examinationslab3.model.Item;
 import com.example.examinationslab3.model.Member;
 import com.example.examinationslab3.model.Order;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -28,10 +31,10 @@ public class OrderService {
         this.itemService = itemService;
         this.memberService = memberService;
         this.cart = new ArrayList<>();
-        System.out.println(cart.size() + "....ny");
+
     }
 
-    public void createOrder(Member member, List<Item> list){
+    public void createOrder(Member member, List<CartItem> list){
         Order order = new Order(member, list);
         orderDAO.save(order);
     }
@@ -44,7 +47,6 @@ public class OrderService {
 
         if (!status) {
             cart.add(cartItem);
-            System.out.println("Tillagd");
         }
 
 
@@ -54,7 +56,7 @@ public class OrderService {
         CartItem cartItem = new CartItem(item, amount);
         for (CartItem c : cart) {
             if(c.equals(cartItem)){
-                c.setAmount(amount);
+                c.setAmount(amount + c.getAmount());
                 return true;
             }
         }
@@ -73,6 +75,19 @@ public class OrderService {
         }
 
         return String.valueOf(sum + " " + "sek");
+    }
+    public int totalCartCostInt(){
+        int sum = 0;
+
+        for (CartItem c : cart) {
+            sum = sum + c.getAmount() * (int)c.getItem().getPrice();
+        }
+
+        return sum;
+    }
+
+    public void clearCart(){
+        cart.clear();
     }
 
 

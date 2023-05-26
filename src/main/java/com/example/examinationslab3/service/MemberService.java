@@ -2,13 +2,17 @@ package com.example.examinationslab3.service;
 
 import com.example.examinationslab3.dao.MemberDAO;
 import com.example.examinationslab3.model.Member;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@SessionScope
 public class MemberService {
 
     private final MemberDAO memberDAO;
@@ -40,27 +44,6 @@ public class MemberService {
 
         //return memberDAO.findById(id).orElseThrow(NullPointerException::new);
     }
-
-
-
-
-/*    public String findByUsername(String username) {
-        Optional<Member> member = memberDAO.findByUsername(username);
-        if (member.isPresent()) {
-            return member.get().getUsername();
-        } else {
-            return null;
-        }
-    }
-
-    public String findByPassword(String password) {
-        Optional<Member> member = memberDAO.findByPassword(password);
-        if (member.isPresent()) {
-            return member.get().getPassword();
-        } else {
-            return null;
-        }
-    }*/
 
 
 

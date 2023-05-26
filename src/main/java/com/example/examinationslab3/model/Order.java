@@ -19,7 +19,13 @@ public class Order {
 
     private Enum<OrderExpedite> expediteStatus = OrderExpedite.PENDING;
 
-    public Order(Member member, List<Item> items) {
+    public Order(Member member, List<CartItem> cartItems) {
+
+        for (CartItem cartItem: cartItems) {
+            items.add(cartItem.getItem());
+        }
+
+
         this.member = member;
         this.items = items;
     }
