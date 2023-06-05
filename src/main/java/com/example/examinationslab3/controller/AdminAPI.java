@@ -41,6 +41,12 @@ public class AdminAPI {
         return "adminlogin";
     }
 
+    @GetMapping("/returnfrontpage")
+    public String redirectAdmin(Model m){
+
+        return "adminfrontpage";
+    }
+
 
 }
 

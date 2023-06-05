@@ -27,12 +27,12 @@
     <tbody>
     <th:block th:each="items : ${cart}">
         <tr>
-            <td th:text="${items.item.name}"></td>
-            <td th:text="${items.item.price} + Sek"></td>
+            <td th:text="${items.name}"></td>
+            <td th:text="${items.price} + Sek"></td>
             <td th:text="${items.amount} + pcs"></td>
             <td>
                 <form action="/changecartamount" method="post">
-                    <input type="hidden" name="updatecartitem" th:value="${items.item.name}">
+                    <input type="hidden" name="updatecartitem" th:value="${items.name}">
                     <input type="text" size="8" name="amount" value="new amount">
                     <input type="submit" value="Select">
                 </form>

@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -17,15 +18,11 @@ public class Order {
     @ManyToMany
     private List<Item> items = new ArrayList<>();
 
-    private Enum<OrderExpedite> expediteStatus = OrderExpedite.PENDING;
+    private String expediteStatus;
 
-    public Order(Member member, List<CartItem> cartItems) {
+    private boolean isPaid = true;
 
-        for (CartItem cartItem: cartItems) {
-            items.add(cartItem.getItem());
-        }
-
-
+    public Order(List<Item> items, Member member) {
         this.member = member;
         this.items = items;
     }
@@ -41,12 +38,23 @@ public class Order {
         this.items = items;
     }
 
-    public Enum<OrderExpedite> getExpediteStatus() {
+    public String getExpediteStatus() {
         return expediteStatus;
     }
 
-    public void setExpediteStatus(Enum<OrderExpedite> expediteStatus) {
-        this.expediteStatus = expediteStatus;
+    public void setExpediteStatus(String expediteStatus) {
+
+        if(expediteStatus.equalsIgnoreCase("PENDING")){
+            this.expediteStatus = expediteStatus;
+
+        } else if (expediteStatus.equalsIgnoreCase("COMPLETE")) {
+            this.expediteStatus = expediteStatus;
+
+        }else if (expediteStatus.equalsIgnoreCase("REMOVED")) {
+            this.expediteStatus = expediteStatus;
+
+        }
+
     }
 
     public Order(Member member) {
@@ -62,11 +70,15 @@ public class Order {
         this.member = member;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
     }
 }

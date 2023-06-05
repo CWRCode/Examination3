@@ -1,8 +1,6 @@
 package com.example.examinationslab3.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
@@ -11,6 +9,9 @@ import java.util.List;
 @Entity
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @NotBlank
     private String username;
 
     @NotBlank
@@ -35,6 +36,10 @@ public class Member {
     public Member() {
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -50,4 +55,9 @@ public class Member {
     public String getUsername() {
         return username;
     }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.example.examinationslab3.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +13,7 @@ import java.util.Objects;
 public class Item {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotBlank
@@ -26,11 +23,15 @@ public class Item {
     @Max(10000)
     private double price;
 
+    @Min(0)
+    @Max(500)
+    private int amount;
+
     @NotBlank
     private String category;
 
-    @ManyToMany
-    private List<Order> orders = new ArrayList<>();
+    private boolean exist = true;
+
 
     public Item(String name, double price, String category) {
         this.name = name;
@@ -62,6 +63,14 @@ public class Item {
         this.price = price;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -70,12 +79,12 @@ public class Item {
         this.category = category;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public boolean isExist() {
+        return exist;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setExist(boolean exist) {
+        this.exist = exist;
     }
 
     @Override

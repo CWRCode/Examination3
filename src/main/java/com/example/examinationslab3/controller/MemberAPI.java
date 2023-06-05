@@ -53,7 +53,7 @@ public class MemberAPI {
     }
 
     @PostMapping("/new")
-    String addNewMember(@Valid Member member, BindingResult br, Model m, HttpServletResponse response ) {
+    String addNewMember(@Valid Member member, BindingResult br, Model m) {
         m.addAttribute("member", new Member());
 
         if(br.hasErrors()){
@@ -62,6 +62,7 @@ public class MemberAPI {
         } else {
             if(memberService.verifyMember(member.getUsername(), member.getPassword())){
                 m.addAttribute("errormessage", "not correctly done");
+                return "newmember";
             }else {
                 memberService.addMember(member);
             }

@@ -70,7 +70,7 @@ public class ItemAPI {
 
         m.addAttribute("allitems", items);
 
-        return "productmanagement";
+        return "redirect:/productmanagement";
     }
 
     @GetMapping("/changeitemname")

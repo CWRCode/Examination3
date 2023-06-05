@@ -27,10 +27,10 @@
     <th:block th:each="items : ${cart}">
 
         <tr>
-            <td th:text="${items.item.name}"></td>
+            <td th:text="${items.name}"></td>
             <td th:text="${items.amount}"></td>
-            <td th:text="${items.item.price}"></td>
-            <td th:text="${items.item.price * items.amount}"></td>
+            <td th:text="${items.price}"></td>
+            <td th:text="${items.price * items.amount}"></td>
 
         </tr>
     </th:block>

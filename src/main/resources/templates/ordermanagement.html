@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="http://localhost:8080/returnfrontpage">Back</a>
+</br>
+
+<div style="text-align: center;">
+    <h1>Order management</h1> </br></br>
+</div>
+
+<div style="text-align: center;">
+    <h4>Orders</h4>
+</div>
+
+
+<table style="margin-right: auto;margin-left: auto">
+    <thead>
+    <tr>
+        <th>| Member |</th>
+        <th> Expedite Status |</th>
+        <th> Change Expedite |</th>
+        <th> Paid |</th>
+        <th> Change Paid |</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="order : ${allorders}">
+        <tr>
+            <td th:text="${order.member.username}"></td>
+            <td th:text="${order.expediteStatus}"></td>
+            <td>
+                <form action="/management/orders/expedite" method="post">
+                    <input type="hidden" name="id" th:value="${order.id}">
+                    <input type="submit" value="Change">
+                </form>
+            </td>
+            <td th:text="${order.isPaid}"></td>
+            <td>
+                <form action="/management/orders/paid" method="post">
+                    <input type="hidden" name="id" th:value="${order.id}">
+                    <input type="submit" value="Change">
+                </form>
+            </td>
+        </tr>
+
+    </th:block>
+    </tbody>
+
+</table>
+
+</body>
+</html>
