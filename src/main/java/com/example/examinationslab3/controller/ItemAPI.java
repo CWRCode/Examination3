@@ -62,7 +62,7 @@ public class ItemAPI {
         return "productmodifier";
     }
 
-    @GetMapping("/deleteitem")
+/*    @GetMapping("/deleteitem")
     public String deleteItem(@RequestParam long id, Model m){
         itemService.deleteItem(id);
 
@@ -71,7 +71,7 @@ public class ItemAPI {
         m.addAttribute("allitems", items);
 
         return "redirect:/productmanagement";
-    }
+    }*/
 
     @GetMapping("/changeitemname")
     public String updateItemName(@RequestParam long id, Model m){

@@ -65,14 +65,11 @@ public class OrderAPI {
         m.addAttribute("totalcart", orderService.totalCartCostInt());
 
         //orderService.createOrder(a, orderService.cartItems());
-
         List<Item> list = orderService.cartItems();
-
 
         // EN egen mapping för att clear:a cart.
         orderService.createOrder(list);
         //orderService.clearCart();
-
 
         return "purchase";
     }

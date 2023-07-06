@@ -41,8 +41,6 @@ public class OrderService {
             Order order = new Order(list, member);
             order.setPaid(false);
             order.setExpediteStatus("PENDING");
-            //order.getItems().addAll(list);
-            //order.setMember(member);
             order = orderDAO.save(order);
             member.getOrders().add(order);
             memberService.save(member);
